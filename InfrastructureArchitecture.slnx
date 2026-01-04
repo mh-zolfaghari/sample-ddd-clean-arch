@@ -1,0 +1,16 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path=".gitignore" />
+    <File Path="LICENSE" />
+    <File Path="README.md" />
+  </Folder>
+  <Folder Name="/src/">
+    <Project Path="src/Architecture.Infrastructure/Architecture.Infrastructure.csproj" />
+    <Project Path="src/Architecture.Presentation/Architecture.Presentation.csproj" />
+    <Project Path="src/Architecture.Shared/Architecture.Shared.csproj" />
+  </Folder>
+  <Folder Name="/src/core/">
+    <Project Path="src/core/Architecture.Application/Architecture.Application.csproj" />
+    <Project Path="src/core/Architecture.Domain/Architecture.Domain.csproj" />
+  </Folder>
+</Solution>

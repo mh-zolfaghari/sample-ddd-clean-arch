@@ -1,0 +1,12 @@
+﻿global using Architecture.Application;
+global using Architecture.Application.Abstractions.Exceptions;
+global using Architecture.Infrastructure;
+global using Architecture.Presentation.Commons.Extensions;
+global using Architecture.Presentation.Configurations;
+global using Architecture.Shared.Commons.CQRS.Contracts;
+global using Architecture.Shared.Commons.Extensions;
+global using Architecture.Shared.Commons.Result;
+global using Microsoft.AspNetCore.Diagnostics;
+global using Microsoft.AspNetCore.Mvc;
+global using System.Diagnostics;
+global using System.Net;
