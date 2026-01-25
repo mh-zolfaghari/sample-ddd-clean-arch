@@ -27,7 +27,7 @@ namespace Architecture.Application.UseCases.Orders.Filter
                 .AppendPagination(query, new Sortable([$"ord.{nameof(OrderDTO.Id)}"], true))
                 .ToString();
 
-            return null;
+            return null!;
 
             //return .ToPaginatedResult(query);
         }

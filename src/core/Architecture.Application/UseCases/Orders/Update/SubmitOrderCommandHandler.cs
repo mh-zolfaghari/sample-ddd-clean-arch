@@ -19,19 +19,12 @@ public sealed class SubmitOrderCommandHandler : ICommandRequestHandler<SubmitOrd
 
     public async Task<Result> Handle(SubmitOrderCommand request, CancellationToken cancellationToken)
     {
-        try
-        {
-            var foundedOrder = await _orderRepository.GetAsync(request.Id, cancellationToken);
-            if (foundedOrder is null)
-                return OrderErrorCodes.NOT_FOUND;
+        var foundedOrder = await _orderRepository.GetAsync(request.Id, cancellationToken);
+        if (foundedOrder is null)
+            return OrderErrorCodes.NotFound(request.Id);
 
-            foundedOrder.SubmitStatus();
+        foundedOrder.SubmitStatus();
 
-            return await _unitOfWork.SaveChangesAsync(cancellationToken);
-        }
-        catch
-        {
-            return OrderErrorCodes.CAN_NOT_SUBMIT;
-        }
+        return await _unitOfWork.SaveChangesAsync(cancellationToken);
     }
 }

@@ -14,12 +14,14 @@ public record Error
         (
             string code,
             ErrorStatus status,
-            ErrorSeverity severity
+            ErrorSeverity severity,
+            IDictionary<string, object?>? args = null
         )
     {
         Code = code.ToJsonKey();
         Status = status;
         Severity = severity;
+        Args = args ?? new Dictionary<string, object?>();
     }
     #endregion
 
@@ -34,35 +36,66 @@ public record Error
     // Type of the error severity.
     public ErrorSeverity Severity { get; private init; }
 
+    public IDictionary<string, object?> Args { get; init; }
+
     #endregion
 
     #region Factory Methods - Simplified with Optional MetaData
 
     // Creates a Validation error.
-    public static Error Validation(string code, ErrorSeverity severity) => new(code, ErrorStatus.Validation, severity);
+    public static Error Validation
+        (
+            string code,
+            ErrorSeverity severity = ErrorSeverity.Business,
+            IDictionary<string, object?>? args = null
+        ) => new(code, ErrorStatus.Validation, severity, args);
 
     // Creates an Unauthorized error.
-    public static Error Unauthorized(string code, ErrorSeverity severity) => new(code, ErrorStatus.Unauthorized, severity);
+    public static Error Unauthorized
+        (
+            string code,
+            ErrorSeverity severity = ErrorSeverity.Business,
+            IDictionary<string, object?>? args = null
+        ) => new(code, ErrorStatus.Unauthorized, severity, args);
 
     // Creates a Forbidden error.
-    public static Error Forbidden(string code, ErrorSeverity severity) => new(code, ErrorStatus.Forbidden, severity);
+    public static Error Forbidden
+        (
+            string code,
+            ErrorSeverity severity = ErrorSeverity.Business,
+            IDictionary<string, object?>? args = null
+        ) => new(code, ErrorStatus.Forbidden, severity, args);
 
     // Creates a NotFound error.
-    public static Error NotFound(string code, ErrorSeverity severity) => new(code, ErrorStatus.NotFound, severity);
+    public static Error NotFound
+        (
+            string code,
+            ErrorSeverity severity = ErrorSeverity.Business,
+            IDictionary<string, object?>? args = null
+        ) => new(code, ErrorStatus.NotFound, severity, args);
 
     // Creates a Conflict error.
-    public static Error Conflict(string code, ErrorSeverity severity) => new(code, ErrorStatus.Conflict, severity);
+    public static Error Conflict
+        (
+            string code,
+            ErrorSeverity severity = ErrorSeverity.Business,
+            IDictionary<string, object?>? args = null
+        ) => new(code, ErrorStatus.Conflict, severity, args);
 
     // Creates a Failure error.
-    public static Error Failure(string code, ErrorSeverity severity) => new(code, ErrorStatus.Failure, severity);
+    public static Error Failure
+        (
+            string code,
+            ErrorSeverity severity = ErrorSeverity.Technical,
+            IDictionary<string, object?>? args = null
+        ) => new(code, ErrorStatus.Internal, severity, args);
 
     // Creates an UnprocessableEntity error.
-    public static Error UnprocessableEntity(string code, ErrorSeverity severity) => new(code, ErrorStatus.UnprocessableEntity, severity);
-
-    // Creates a TooManyRequests error.
-    public static Error TooManyRequests(string code, ErrorSeverity severity) => new(code, ErrorStatus.TooManyRequests, severity);
-
-    // Creates a ServiceUnavailable error.
-    public static Error ServiceUnavailable(string code, ErrorSeverity severity) => new(code, ErrorStatus.ServiceUnavailable, severity);
+    public static Error UnprocessableEntity
+        (
+            string code,
+            ErrorSeverity severity = ErrorSeverity.Business,
+            IDictionary<string, object?>? args = null
+        ) => new(code, ErrorStatus.UnprocessableEntity, severity, args);
     #endregion
 }

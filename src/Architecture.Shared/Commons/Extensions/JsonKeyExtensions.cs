@@ -16,7 +16,6 @@ public static class JsonKeyExtensions
         input = input
             .Replace(" ", "_")
             .Replace("-", "_")
-            .Replace(".", "_")
             .Replace("/", "_");
         input = InvalidCharsRegex.Replace(input, string.Empty);
         input = input.ToUnderscoreCase();

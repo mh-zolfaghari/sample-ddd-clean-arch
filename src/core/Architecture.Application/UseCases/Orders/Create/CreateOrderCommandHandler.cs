@@ -19,28 +19,21 @@ public sealed class CreateOrderCommandHandler : ICommandRequestHandler<CreateOrd
 
     public async Task<Result> Handle(CreateOrderCommand command, CancellationToken cancellationToken)
     {
-        try
-        {
-            var order = Order.Create
+        var order = Order.Create
+        (
+            orderNumber: $"ORD-{DateTime.UtcNow.ToString("yyyyMMdd")}-{new Random().NextInt64(100, 100000)}",
+            totalAmount: 56451.54M,
+            status: Domain.Orders.Types.OrderStatus.Draft
+        );
+
+        order.AddItem
             (
-                orderNumber: $"ORD-{DateTime.UtcNow.ToString("yyyyMMdd")}-{new Random().NextInt64(100, 100000)}",
-                totalAmount: 56451.54M,
-                status: Domain.Orders.Types.OrderStatus.Draft
+                productName: $"PRD-{new Random().NextInt64(10000, 999999)}",
+                quantity: new Random().Next(1, 100),
+                price: 1120.12M
             );
 
-            order.AddItem
-                (
-                    productName: $"PRD-{new Random().NextInt64(10000, 999999)}",
-                    quantity: new Random().Next(1, 100),
-                    price: 1120.12M
-                );
-
-            await _orderRepository.CreateAsync(order, cancellationToken);
-            return await _unitOfWork.SaveChangesAsync(cancellationToken);
-        }
-        catch
-        {
-            return OrderErrorCodes.CAN_NOT_CREATE;
-        }
+        _orderRepository.Create(order);
+        return await _unitOfWork.SaveChangesAsync(cancellationToken);
     }
 }

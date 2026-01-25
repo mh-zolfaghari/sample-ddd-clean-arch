@@ -4,12 +4,12 @@ namespace Architecture.Infrastructure.Persistence.Repositories;
 
 internal sealed class OrderRepository(ApplicationDbContext DbContext) : IOrderRepository
 {
-    public async Task CreateAsync(Order order, CancellationToken cancellationToken)
+    public void Create(Order order)
     {
         DbContext.Orders.Add(order);
     }
 
-    public async Task DeleteAsync(Order order, CancellationToken cancellationToken)
+    public void Delete(Order order)
     {
         DbContext.OrderItems.RemoveRange(order.Items);
         DbContext.Orders.Remove(order);

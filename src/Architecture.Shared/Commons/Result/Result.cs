@@ -1,7 +1,7 @@
 namespace Architecture.Shared.Commons.Result;
 
 // Represents the outcome of an operation, indicating success or failure, and optionally carrying data or error information.
-public class Result
+public record Result
 {
     #region Main Props
 
@@ -20,7 +20,7 @@ public class Result
     {
         // Validate: Success results should not have errors
         if (isSuccess && error is not null && error != Error.None)
-            throw new InvalidOperationException("Success result cannot have an error.");
+            throw new InvalidOperationException("Success result can not have an error.");
 
         // Validate: Failure results must have an error
         if (!isSuccess && (error is null || error == Error.None))
@@ -82,7 +82,7 @@ public class Result
 }
 
 // Represents the outcome of an operation that returns data of type T, indicating success or failure, and optionally carrying data or error information.
-public class Result<T> : Result
+public record Result<T> : Result
 {
     // Holds the data if the operation was successful.
     public T? Data { get; private init; }

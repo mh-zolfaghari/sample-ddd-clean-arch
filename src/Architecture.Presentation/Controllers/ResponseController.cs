@@ -33,14 +33,6 @@ public sealed class ResponseController : ControllerBase
     public IActionResult NotFoundItem()
         => Result.Failure(Error.NotFound("Item Not found", ErrorSeverity.Technical)).ToEndpointResponse();
 
-    [HttpGet("/api/responses/service-unavailable")]
-    public IActionResult ServiceUnavailable()
-        => Result.Failure(Error.ServiceUnavailable("Service Unavailable", ErrorSeverity.Technical)).ToEndpointResponse();
-
-    [HttpGet("/api/responses/toomany-requests")]
-    public IActionResult TooManyRequests()
-        => Result.Failure(Error.TooManyRequests("TooMany Requests", ErrorSeverity.Technical)).ToEndpointResponse();
-
     [HttpGet("/api/responses/global-exception")]
     public IActionResult GlobalException()
         => throw new ApplicationException("Just for testing Sentry integration!");

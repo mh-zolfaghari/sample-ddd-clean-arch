@@ -7,6 +7,6 @@ public sealed class GetByIdOrderQueryHandler : IQueryRequestHandler<GetByIdOrder
     public async Task<Result<OrderDTO>> Handle(GetByIdOrderQuery query, CancellationToken cancellationToken)
     {
         await Task.CompletedTask;
-        return null;
+        return null!;
     }
 }

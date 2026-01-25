@@ -8,8 +8,6 @@ public enum ErrorStatus
     Forbidden = 403,
     NotFound = 404,
     Conflict = 409,
-    Failure = 500,
     UnprocessableEntity = 422,
-    TooManyRequests = 429,
-    ServiceUnavailable = 503
+    Internal = 500,
 }

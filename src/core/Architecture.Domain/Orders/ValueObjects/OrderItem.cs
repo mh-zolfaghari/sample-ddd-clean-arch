@@ -6,7 +6,7 @@ public sealed class OrderItem : AuditableEntity<Guid>
     public string ProductName { get; private set; }
     public int Quantity { get; private set; }
     public decimal Price { get; private set; }
-    public Order Order { get; set; }
+    public Order? Order { get; set; }
 
     private OrderItem()
         : base(Guid.Empty)

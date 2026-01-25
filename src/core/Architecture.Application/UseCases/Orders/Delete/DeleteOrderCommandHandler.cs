@@ -19,20 +19,13 @@ public sealed class DeleteOrderCommandHandler : ICommandRequestHandler<DeleteOrd
 
     public async Task<Result> Handle(DeleteOrderCommand request, CancellationToken cancellationToken)
     {
-        try
-        {
-            var foundedOrder = await _orderRepository.GetAsync(request.Id, cancellationToken);
-            if (foundedOrder is null)
-                return OrderErrorCodes.NOT_FOUND;
+        var foundedOrder = await _orderRepository.GetAsync(request.Id, cancellationToken);
+        if (foundedOrder is null)
+            return OrderErrorCodes.NotFound(request.Id);
 
-            foundedOrder.FullDelete();
-            await _orderRepository.DeleteAsync(foundedOrder, cancellationToken);
+        foundedOrder.FullDelete();
+        _orderRepository.Delete(foundedOrder);
 
-            return await _unitOfWork.SaveChangesAsync(cancellationToken);
-        }
-        catch
-        {
-            return OrderErrorCodes.CAN_NOT_DELETE;
-        }
+        return await _unitOfWork.SaveChangesAsync(cancellationToken);
     }
 }

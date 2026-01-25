@@ -1,6 +1,4 @@
-﻿using Architecture.Shared.Commons.Result;
-
-namespace Architecture.Domain.Abstractions.Contracts;
+﻿namespace Architecture.Domain.Abstractions.Contracts;
 
 public interface IUnitOfWork
 {

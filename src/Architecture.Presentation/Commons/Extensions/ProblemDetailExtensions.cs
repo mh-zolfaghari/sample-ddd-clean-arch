@@ -80,10 +80,8 @@ public static class ProblemDetailExtensions
             or ErrorStatus.Forbidden
             or ErrorStatus.NotFound
             or ErrorStatus.Conflict
-            or ErrorStatus.Failure
+            or ErrorStatus.Internal
             or ErrorStatus.UnprocessableEntity
-            or ErrorStatus.TooManyRequests
-            or ErrorStatus.ServiceUnavailable
               => HandleProblemDetails(error),
             _ => new ProblemDetails
             {
@@ -104,10 +102,8 @@ public static class ProblemDetailExtensions
             ErrorStatus.Forbidden => (int)HttpStatusCode.Forbidden,
             ErrorStatus.NotFound => (int)HttpStatusCode.NotFound,
             ErrorStatus.Conflict => (int)HttpStatusCode.Conflict,
-            ErrorStatus.Failure => (int)HttpStatusCode.InternalServerError,
+            ErrorStatus.Internal => (int)HttpStatusCode.InternalServerError,
             ErrorStatus.UnprocessableEntity => (int)HttpStatusCode.UnprocessableEntity,
-            ErrorStatus.TooManyRequests => (int)HttpStatusCode.TooManyRequests,
-            ErrorStatus.ServiceUnavailable => (int)HttpStatusCode.ServiceUnavailable,
             _ => (int)HttpStatusCode.InternalServerError,
         };
 
@@ -120,10 +116,8 @@ public static class ProblemDetailExtensions
             ErrorStatus.Forbidden => "Forbidden",
             ErrorStatus.NotFound => "Not Found",
             ErrorStatus.Conflict => "Conflict",
-            ErrorStatus.Failure => "Internal Server Error",
+            ErrorStatus.Internal => "Internal Server Error",
             ErrorStatus.UnprocessableEntity => "Unprocessable Entity",
-            ErrorStatus.TooManyRequests => "Too Many Requests",
-            ErrorStatus.ServiceUnavailable => "Service Unavailable",
             _ => "Internal Server Error",
         };
 
@@ -136,10 +130,8 @@ public static class ProblemDetailExtensions
             ErrorStatus.Forbidden => "You do not have permission to access this resource.",
             ErrorStatus.NotFound => "The requested resource could not be found.",
             ErrorStatus.Conflict => "A conflict occurred with the current state of the resource.",
-            ErrorStatus.Failure => "An internal server error occurred.",
+            ErrorStatus.Internal => "An internal server error occurred.",
             ErrorStatus.UnprocessableEntity => "The request was well-formed but was unable to be followed due to semantic errors.",
-            ErrorStatus.TooManyRequests => "You have sent too many requests in a given amount of time.",
-            ErrorStatus.ServiceUnavailable => "The server is currently unavailable (because it is overloaded or down for maintenance).",
             _ => "An internal server error occurred.",
         };
 
@@ -152,10 +144,8 @@ public static class ProblemDetailExtensions
             ErrorStatus.Forbidden => "https://httpstatuses.com/403",
             ErrorStatus.NotFound => "https://httpstatuses.com/404",
             ErrorStatus.Conflict => "https://httpstatuses.com/409",
-            ErrorStatus.Failure => "https://httpstatuses.com/500",
+            ErrorStatus.Internal => "https://httpstatuses.com/500",
             ErrorStatus.UnprocessableEntity => "https://httpstatuses.com/422",
-            ErrorStatus.TooManyRequests => "https://httpstatuses.com/429",
-            ErrorStatus.ServiceUnavailable => "https://httpstatuses.com/503",
             _ => "https://httpstatuses.com/500",
         };
 
@@ -204,9 +194,9 @@ public static class ProblemDetailExtensions
     {
         var problemDetails = new ProblemDetails
         {
-            Status = MapErrorTypeToStatusCode(ErrorStatus.Failure),
-            Title = MapErrorTypeToTitle(ErrorStatus.Failure),
-            Type = showMoreDetailsToResponse ? exception.GetType().Name : MapErrorTypeToTypeUri(ErrorStatus.Failure)
+            Status = MapErrorTypeToStatusCode(ErrorStatus.Internal),
+            Title = MapErrorTypeToTitle(ErrorStatus.Internal),
+            Type = showMoreDetailsToResponse ? exception.GetType().Name : MapErrorTypeToTypeUri(ErrorStatus.Internal)
         };
 
         if (showMoreDetailsToResponse)
@@ -222,7 +212,7 @@ public static class ProblemDetailExtensions
         }
         else
         {
-            problemDetails.Detail = MapErrorTypeToDetail(ErrorStatus.Failure);
+            problemDetails.Detail = MapErrorTypeToDetail(ErrorStatus.Internal);
         }
 
         AddTraceIdAndInstanceToProblemDetails(problemDetails, httpContext);

@@ -16,6 +16,6 @@ public interface IReadGenericRepository<TEntity, TTypedId> : IReadGenericReposit
 public interface IWriteGenericRepository<TEntity>
     where TEntity : class, IEntity
 {
-    Task CreateAsync(TEntity entity, CancellationToken cancellationToken);
-    Task DeleteAsync(TEntity entity, CancellationToken cancellationToken);
+    void Create(TEntity entity);
+    void Delete(TEntity entity);
 }

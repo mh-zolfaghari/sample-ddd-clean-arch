@@ -2,11 +2,11 @@
 {
     public record TestCommand
     {
-        public string Name { get; set; }
-        public string Family { get; set; }
+        public string Name { get; set; } = default!;
+        public string Family { get; set; } = default!;
     }
 
-    public class TestCommandHandler(TestCommand command)
+    public class TestCommandHandler()
     {
         public async Task<Result> Handle(TestCommand command, CancellationToken cancellationToken)
         {
