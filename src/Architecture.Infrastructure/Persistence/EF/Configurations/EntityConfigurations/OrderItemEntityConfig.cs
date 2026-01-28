@@ -1,4 +1,4 @@
-﻿using Architecture.Domain.Orders.ValueObjects;
+﻿using Architecture.Domain.Aggregates.Orders.ValueObjects;
 
 namespace Architecture.Infrastructure.Persistence.EF.Configurations.EntityConfigurations;
 

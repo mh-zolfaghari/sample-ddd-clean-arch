@@ -1,4 +1,4 @@
-﻿namespace Architecture.Domain.Orders.ValueObjects;
+﻿namespace Architecture.Domain.Aggregates.Orders.ValueObjects;
 
 public readonly record struct OrderId(Guid Value) : ITypedId<Guid>
 {

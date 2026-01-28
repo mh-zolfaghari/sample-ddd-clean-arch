@@ -1,4 +1,4 @@
-﻿namespace Architecture.Domain.Shared;
+﻿namespace Architecture.Domain;
 
 public static class GlobalErrorCodes
 {

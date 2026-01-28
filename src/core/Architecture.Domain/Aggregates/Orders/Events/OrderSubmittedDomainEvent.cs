@@ -1,6 +1,6 @@
-﻿using Architecture.Domain.Orders.ValueObjects;
+﻿using Architecture.Domain.Aggregates.Orders.ValueObjects;
 
-namespace Architecture.Domain.Orders.Events;
+namespace Architecture.Domain.Aggregates.Orders.Events;
 
 public sealed record OrderSubmittedDomainEvent
     (

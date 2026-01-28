@@ -1,5 +1,5 @@
 ﻿using Architecture.Application.Abstractions.Query;
-using Architecture.Domain.Orders.Types;
+using Architecture.Domain.Aggregates.Orders.Types;
 
 namespace Architecture.Application.DTOs.Orders;
 

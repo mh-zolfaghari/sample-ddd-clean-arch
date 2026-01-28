@@ -1,8 +1,8 @@
-﻿using Architecture.Domain.Orders.Events;
-using Architecture.Domain.Orders.Types;
-using Architecture.Domain.Orders.ValueObjects;
+﻿using Architecture.Domain.Aggregates.Orders.Events;
+using Architecture.Domain.Aggregates.Orders.Types;
+using Architecture.Domain.Aggregates.Orders.ValueObjects;
 
-namespace Architecture.Domain.Orders;
+namespace Architecture.Domain.Aggregates.Orders;
 
 public sealed class Order : AuditableAggregateRoot<OrderId>
 {
@@ -53,14 +53,9 @@ public sealed class Order : AuditableAggregateRoot<OrderId>
         return order;
     }
 
-    public void SubmitStatus()
+    public void Remove()
     {
-        Status = OrderStatus.Submitted;
-    }
-
-    public void FullDelete()
-    {
-        _items.Clear();
+        RaiseDomainEvent(new OrderDeletedDomainEvent(DomainId));
     }
 
     public void AddItem
@@ -82,7 +77,7 @@ public sealed class Order : AuditableAggregateRoot<OrderId>
     {
         EnsureDraft();
 
-        if (!_items.Any())
+        if (_items.Count == 0)
             throw new InvalidOperationException("Order has no items");
 
         Status = OrderStatus.Submitted;

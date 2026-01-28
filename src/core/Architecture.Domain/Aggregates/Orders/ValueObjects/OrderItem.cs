@@ -1,4 +1,4 @@
-﻿namespace Architecture.Domain.Orders.ValueObjects;
+﻿namespace Architecture.Domain.Aggregates.Orders.ValueObjects;
 
 public sealed class OrderItem : AuditableEntity<Guid>
 {
@@ -20,7 +20,7 @@ public sealed class OrderItem : AuditableEntity<Guid>
     private OrderItem
         (
             Guid id,
-            long  orderDbId,
+            long orderDbId,
             string productName,
             int quantity,
             decimal price

@@ -1,4 +1,4 @@
-﻿namespace Architecture.Domain.Orders.Types;
+﻿namespace Architecture.Domain.Aggregates.Orders.Types;
 
 public enum OrderStatus
 {

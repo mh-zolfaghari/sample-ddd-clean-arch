@@ -1,4 +1,4 @@
-﻿using Architecture.Domain.Orders;
+﻿using Architecture.Domain.Aggregates.Orders;
 
 namespace Architecture.Application.UseCases.Orders.Delete;
 
@@ -23,7 +23,7 @@ public sealed class DeleteOrderCommandHandler : ICommandRequestHandler<DeleteOrd
         if (foundedOrder is null)
             return OrderErrorCodes.NotFound(request.Id);
 
-        foundedOrder.FullDelete();
+        foundedOrder.Remove();
         _orderRepository.Delete(foundedOrder);
 
         return await _unitOfWork.SaveChangesAsync(cancellationToken);

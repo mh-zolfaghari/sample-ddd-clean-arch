@@ -1,6 +1,5 @@
 ﻿global using Architecture.Domain.Abstractions;
 global using Architecture.Domain.Abstractions.Contracts;
-global using Architecture.Domain.Orders;
 global using Architecture.Infrastructure.Persistence.Constants;
 global using Architecture.Infrastructure.Persistence.EF.Abstractions.Extensions;
 global using Architecture.Infrastructure.Persistence.EF.Abstractions.ValueConverters;

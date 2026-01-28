@@ -1,4 +1,5 @@
-﻿using Architecture.Domain.Orders.ValueObjects;
+﻿using Architecture.Domain.Aggregates.Orders;
+using Architecture.Domain.Aggregates.Orders.ValueObjects;
 
 namespace Architecture.Infrastructure.Persistence.EF.Configurations.EntityConfigurations;
 
@@ -24,6 +25,7 @@ internal sealed class OrderEntityConfig : BaseEntityConfig<Order>
         builder
             .HasMany(x => x.Items)
             .WithOne(x => x.Order)
-            .HasForeignKey(x => x.OrderDbId);
+            .HasForeignKey(x => x.OrderDbId)
+            .OnDelete(DeleteBehavior.Cascade);
     }
 }

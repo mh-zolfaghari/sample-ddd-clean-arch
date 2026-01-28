@@ -1,4 +1,5 @@
-﻿using Architecture.Domain.Orders;
+﻿using Architecture.Domain.Aggregates.Orders;
+using Architecture.Domain.Aggregates.Orders.Types;
 
 namespace Architecture.Application.UseCases.Orders.Create;
 
@@ -23,7 +24,7 @@ public sealed class CreateOrderCommandHandler : ICommandRequestHandler<CreateOrd
         (
             orderNumber: $"ORD-{DateTime.UtcNow.ToString("yyyyMMdd")}-{new Random().NextInt64(100, 100000)}",
             totalAmount: 56451.54M,
-            status: Domain.Orders.Types.OrderStatus.Draft
+            status: OrderStatus.Draft
         );
 
         order.AddItem

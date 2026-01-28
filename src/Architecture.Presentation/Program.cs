@@ -1,18 +1,18 @@
-using Architecture.Presentation.Middlewares;
+using Architecture.Presentation;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddHttpContextAccessor();
-builder.Services.AddConfiguredControllers();
-builder.Services.AddOpenApi();
+builder.Services.ConfigureApiServices(builder.Configuration);
 builder.Services.ConfigureInfrastructureServices(builder.Configuration);
 builder.ConfigureApplicationServices();
-builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
-builder.Services.AddProblemDetails();
+
+builder.Services.AddOpenApi();
+
 
 var app = builder.Build();
 
-app.UseExceptionHandler();
+app.UseAppLocalization();
+app.UseCustomExceptionHandler();
 
 if (app.Environment.IsDevelopment())
 {

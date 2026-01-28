@@ -1,6 +1,7 @@
 ﻿namespace Architecture.Infrastructure.Persistence.Constants;
 
-internal class ConstantMessages
+public static class ConstantMessages
 {
-    internal static readonly Error SaveChangesFailed = Error.Failure(nameof(SaveChangesFailed), ErrorSeverity.Technical);
+    public static readonly Error SaveChangesFailed = Error.Failure("Db.OperationFailed", ErrorSeverity.Technical);
+    public static Error UnhandleError(IDictionary<string, object?>? args = null) => Error.Failure("Operation.Failed", ErrorSeverity.Technical, args);
 }

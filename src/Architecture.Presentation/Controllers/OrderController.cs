@@ -13,8 +13,9 @@ namespace Architecture.Presentation.Controllers
         [HttpGet("/api/orders/create")]
         public async Task<IActionResult> Create(CancellationToken cancellationToken = default)
         {
-            var result = await mediator.SendAsync(new CreateOrderCommand(), cancellationToken);
-            return result.ToEndpointResponse();
+            throw new NotImplementedException("This is a test message for handling technical error.");
+            //var result = await mediator.SendAsync(new CreateOrderCommand(), cancellationToken);
+            //return result.ToEndpointResponse();
         }
 
 

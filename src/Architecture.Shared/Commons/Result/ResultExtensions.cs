@@ -1,15 +1,9 @@
 namespace Architecture.Shared.Commons.Result;
 
-/// <summary>
-/// Extension methods for Result and Result<T> to simplify usage
-/// </summary>
 public static class ResultExtensions
 {
     #region Async Extensions for Result<T>
 
-    /// <summary>
-    /// Maps the result of an async operation
-    /// </summary>
     public static async Task<Result<TOut>> MapAsync<TIn, TOut>
         (
             this Task<Result<TIn>> resultTask,
@@ -20,9 +14,6 @@ public static class ResultExtensions
         return result.Map(mapper);
     }
 
-    /// <summary>
-    /// Binds the result of an async operation
-    /// </summary>
     public static async Task<Result<TOut>> BindAsync<TIn, TOut>
         (
             this Task<Result<TIn>> resultTask,
@@ -35,9 +26,6 @@ public static class ResultExtensions
             : Result<TOut>.Failure(result.Error!);
     }
 
-    /// <summary>
-    /// Executes an action if the async result is successful
-    /// </summary>
     public static async Task<Result<T>> OnSuccessAsync<T>
         (
             this Task<Result<T>> resultTask,
@@ -50,9 +38,6 @@ public static class ResultExtensions
         return result;
     }
 
-    /// <summary>
-    /// Executes an action if the async result is a failure
-    /// </summary>
     public static async Task<Result<T>> OnFailureAsync<T>
         (
             this Task<Result<T>> resultTask,
@@ -69,9 +54,6 @@ public static class ResultExtensions
 
     #region Conversion Extensions
 
-    /// <summary>
-    /// Converts Result<T> to Result
-    /// </summary>
     public static Result ToResult<T>(this Result<T> result)
     {
         return result.IsSuccess
@@ -83,10 +65,6 @@ public static class ResultExtensions
 
     #region Collection Extensions
 
-    /// <summary>
-    /// Combines multiple results into a single result
-    /// Returns success only if all results are successful
-    /// </summary>
     public static Result Combine(params Result[] results)
     {
         foreach (var result in results)
@@ -102,9 +80,6 @@ public static class ResultExtensions
 
     #region Tap Extensions (Side Effects)
 
-    /// <summary>
-    /// Performs a side effect without changing the result
-    /// </summary>
     public static Result<T> Tap<T>
         (
             this Result<T> result,
@@ -116,9 +91,6 @@ public static class ResultExtensions
         return result;
     }
 
-    /// <summary>
-    /// Performs an async side effect without changing the result
-    /// </summary>
     public static async Task<Result<T>> TapAsync<T>
         (
             this Result<T> result,

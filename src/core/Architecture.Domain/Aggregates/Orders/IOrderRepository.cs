@@ -1,6 +1,6 @@
-﻿using Architecture.Domain.Orders.ValueObjects;
+﻿using Architecture.Domain.Aggregates.Orders.ValueObjects;
 
-namespace Architecture.Domain.Orders;
+namespace Architecture.Domain.Aggregates.Orders;
 
 public interface IOrderRepository : IWriteGenericRepository<Order>, IReadGenericRepository<Order, OrderId>
 {

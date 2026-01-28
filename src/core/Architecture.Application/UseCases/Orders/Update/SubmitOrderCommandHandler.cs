@@ -1,4 +1,4 @@
-﻿using Architecture.Domain.Orders;
+﻿using Architecture.Domain.Aggregates.Orders;
 
 namespace Architecture.Application.UseCases.Orders.Update;
 
@@ -23,7 +23,7 @@ public sealed class SubmitOrderCommandHandler : ICommandRequestHandler<SubmitOrd
         if (foundedOrder is null)
             return OrderErrorCodes.NotFound(request.Id);
 
-        foundedOrder.SubmitStatus();
+        foundedOrder.Submit();
 
         return await _unitOfWork.SaveChangesAsync(cancellationToken);
     }

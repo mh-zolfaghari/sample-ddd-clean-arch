@@ -1,5 +1,5 @@
 ﻿using Architecture.Application.DTOs.Orders;
-using Architecture.Domain.Orders.Types;
+using Architecture.Domain.Aggregates.Orders.Types;
 
 namespace Architecture.Application.UseCases.Orders.Filter
 {

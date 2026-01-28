@@ -1,4 +1,6 @@
-﻿namespace Architecture.Infrastructure;
+﻿using Architecture.Domain.Aggregates.Orders;
+
+namespace Architecture.Infrastructure;
 
 // The AppServiceConfigurations class contains extension methods for configuring infrastructure services.
 public static class AppServiceConfigurations

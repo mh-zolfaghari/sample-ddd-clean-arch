@@ -11,9 +11,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Shared\Events\" />
-    <Folder Include="Shared\Types\" />
-    <Folder Include="Shared\ValueObjects\" />
+    <Folder Include="Aggregates\Shared\Events\" />
+    <Folder Include="Aggregates\Shared\Types\" />
+    <Folder Include="Aggregates\Shared\ValueObjects\" />
+    <Folder Include="Services\" />
   </ItemGroup>
 
 </Project>
