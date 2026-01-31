@@ -117,7 +117,27 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Db.OperationFailed" xml:space="preserve">
+    <value>متأسفانه در برقراری ارتباط با پایگاه داده مشکلی رخ داده است.
+این یک خطای فنی است. لطفاً چند دقیقه بعد مجدداً تلاش نمایید.
+در صورت تداوم مشکل، با پشتیبانی تماس حاصل فرمایید.</value>
+  </data>
   <data name="Operation.Failed" xml:space="preserve">
     <value>عملیات مورد نظر با خطا مواجه شده است. لطفاً کمی بعد دوباره تلاش نمایید. در صورت تداوم مشکل، با پشتیبانی تماس بگیرید.</value>
+  </data>
+  <data name="Operation.Successful" xml:space="preserve">
+    <value>عملیات مورد نظر با موفقیت انجام شد.</value>
+  </data>
+  <data name="Pagination.PageIndexGreaterThanOrEqual" xml:space="preserve">
+    <value>مقدار پارامتر PageIndex باید مساوی یا بزرگ‌تر از {minValue} باشد.</value>
+  </data>
+  <data name="Pagination.PageSizeGreaterThanOrEqual" xml:space="preserve">
+    <value>مقدار پارامتر PageSize باید مساوی یا بزرگ‌تر از {minValue} باشد.</value>
+  </data>
+  <data name="Pagination.PageSizeLessThanOrEqual" xml:space="preserve">
+    <value>مقدار پارامتر PageSize باید مساوی یا کوچک‌تر از {maxValue} باشد.</value>
+  </data>
+  <data name="Validation.UnhandledErrorMessage" xml:space="preserve">
+    <value>یک خطای بدون ترجمه گزارش شده است.</value>
   </data>
 </root>

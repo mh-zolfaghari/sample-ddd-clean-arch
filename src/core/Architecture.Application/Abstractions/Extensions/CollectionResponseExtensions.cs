@@ -9,7 +9,7 @@ public static class CollectionResponseExtensions
         (
             this IEnumerable<T>? source,
             ICollectionQueryRequest<T> collectionQueryRequest
-        ) where T : notnull, ITotalCountQueryResult, new()
+        ) where T : notnull, ITotalCountQueryResult
     {
         return CreateResponse(source, collectionQueryRequest, source?.FirstOrDefault()?.TotalCount ?? 0);
     }

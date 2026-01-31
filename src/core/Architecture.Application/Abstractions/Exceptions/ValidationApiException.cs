@@ -1,9 +1,6 @@
 ﻿namespace Architecture.Application.Abstractions.Exceptions;
 
-
-// Represents validation errors in an API context.
-public sealed record ValidationErrorDetail(string Code, string Message);
-public sealed record ValidationError(IReadOnlyDictionary<string, IEnumerable<ValidationErrorDetail>> Errors);
+public sealed record ValidationError(IReadOnlyDictionary<string, IEnumerable<Error>> ErrorCodes);
 
 // Exception thrown when validation fails in an API context.
 public sealed class ValidationApiException(ValidationError errors) : Exception("Validation failed.")

@@ -1,9 +1,14 @@
-﻿namespace Architecture.Application.Abstractions.Validators;
+﻿using Architecture.Application.Abstractions.Extensions;
+
+namespace Architecture.Application.Abstractions.Validators;
 
 public abstract class CollectionQueryRequestValidator<TQuery, TResponse> : AbstractValidator<TQuery>
     where TQuery : CollectionQueryRequest<TResponse>
     where TResponse : notnull
 {
+    private const int PageIndexMinValue = 1;
+    private const int PageSizeMinValue = 1;
+
     protected virtual int MaxPageSize => 50;
     protected virtual bool CanGetAll => true;
 
@@ -12,25 +17,29 @@ public abstract class CollectionQueryRequestValidator<TQuery, TResponse> : Abstr
         When(x => !(x.PageIndex == 0 && x.PageSize == 0 && CanGetAll), () =>
         {
             RuleFor(x => x.PageIndex)
-                .GreaterThan(0).WithMessage("The PageIndex value can't be less than 1.");
+                .GreaterThanOrEqualTo(PageIndexMinValue)
+                    .WithResultErrorValidation(SharedAppErrorCodes.PaginationPageIndexGreaterThanOrEqual(PageIndexMinValue));
 
             RuleFor(x => x.PageSize)
-                .GreaterThan(0).WithMessage("The PageSize value can't be less than 1.")
-                .LessThanOrEqualTo(MaxPageSize).WithMessage($"The PageSize value cannot be greater than {MaxPageSize}.");
+                .GreaterThanOrEqualTo(PageSizeMinValue)
+                    .WithResultErrorValidation(SharedAppErrorCodes.PaginationPageSizeGreaterThanOrEqual(PageSizeMinValue))
+                .LessThanOrEqualTo(MaxPageSize)
+                    .WithResultErrorValidation(SharedAppErrorCodes.PaginationPageSizeLessThanOrEqual(MaxPageSize));
+
         });
 
-        When(x => x.SortBy?.Length > 0, () =>
-        {
-            RuleFor(x => x.SortBy)
-                .Must((request, item, context) => request.SortableItems().Length == 0)
-                .WithErrorCode("")
-                .WithMessage("");
+        //When(x => x.SortBy?.Length > 0, () =>
+        //{
+        //    RuleFor(x => x.SortBy)
+        //        .Must((request, item, context) => request.SortableItems().Length == 0)
+        //        .WithErrorCode("sasasa")
+        //        .WithMessage("dadadada");
 
-            RuleFor(x => x.SortBy)
-                .Must(x => x!.Any(string.IsNullOrWhiteSpace))
-                .WithErrorCode("FoundedNullOrEmptySortItem")
-                .WithMessage("اینجا باید متن خطای پیدا شدن مقدار خالی یا null رو بنویسی");
-        });
+        //    RuleFor(x => x.SortBy)
+        //        .Must(x => x!.Any(string.IsNullOrWhiteSpace))
+        //        .WithErrorCode("FoundedNullOrEmptySortItem")
+        //        .WithMessage("اینجا باید متن خطای پیدا شدن مقدار خالی یا null رو بنویسی");
+        //});
 
         Validations();
     }

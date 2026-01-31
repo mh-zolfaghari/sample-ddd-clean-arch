@@ -1,5 +1,4 @@
-﻿using Architecture.Presentation.Middlewares;
-using Microsoft.AspNetCore.Localization;
+﻿using Microsoft.AspNetCore.Localization;
 using System.Globalization;
 
 namespace Architecture.Presentation.Configurations;
@@ -10,7 +9,7 @@ public static class ConfigureLocalization
     {
         services.AddLocalization(options =>
         {
-            options.ResourcesPath = "Localization/Resources";
+            options.ResourcesPath = "Resources";
         });
 
         services.Configure<RequestLocalizationOptions>(options =>
@@ -22,7 +21,7 @@ public static class ConfigureLocalization
                 new CultureInfo("fa-IR")
             };
 
-            options.DefaultRequestCulture = new RequestCulture("en-US");
+            options.DefaultRequestCulture = new RequestCulture(culture: "fa-IR", uiCulture: "fa-IR");
             options.SupportedCultures = supportedCultures;
             options.SupportedUICultures = supportedCultures;
             options.RequestCultureProviders = [new AcceptLanguageHeaderRequestCultureProvider()];
@@ -35,6 +34,6 @@ public static class ConfigureLocalization
     public static void UseAppLocalization(this IApplicationBuilder app)
     {
         app.UseRequestLocalization();
-        app.UseMiddleware<LocalizationMiddleware>();
+        //app.UseMiddleware<LocalizationMiddleware>();
     }
 }

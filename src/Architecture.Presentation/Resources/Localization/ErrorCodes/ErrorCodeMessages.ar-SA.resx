@@ -117,7 +117,27 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Db.OperationFailed" xml:space="preserve">
+    <value>نأسف لحدوث مشكلة أثناء الاتصال بقاعدة البيانات.
+هذا خطأ تقني. يرجى المحاولة مرة أخرى بعد بضع دقائق.
+في حال استمرار المشكلة، يرجى التواصل مع الدعم الفني.</value>
+  </data>
   <data name="Operation.Failed" xml:space="preserve">
     <value>حدث خطأ أثناء تنفيذ العملية المطلوبة. يرجى المحاولة مرة أخرى لاحقًا، وفي حال استمرار المشكلة يرجى التواصل مع الدعم الفني.</value>
+  </data>
+  <data name="Operation.Successful" xml:space="preserve">
+    <value>تم تنفيذ العملية بنجاح.</value>
+  </data>
+  <data name="Pagination.PageIndexGreaterThanOrEqual" xml:space="preserve">
+    <value>يجب أن تكون قيمة المعامل PageIndex مساوية أو أكبر من {minValue}.</value>
+  </data>
+  <data name="Pagination.PageSizeGreaterThanOrEqual" xml:space="preserve">
+    <value>يجب أن تكون قيمة المعامل PageSize مساوية أو أكبر من {minValue}.</value>
+  </data>
+  <data name="Pagination.PageSizeLessThanOrEqual" xml:space="preserve">
+    <value>يجب أن تكون قيمة المعامل PageSize مساوية أو أصغر من {maxValue}.</value>
+  </data>
+  <data name="Validation.UnhandledErrorMessage" xml:space="preserve">
+    <value>تم الإبلاغ عن خطأ غير مترجم.</value>
   </data>
 </root>

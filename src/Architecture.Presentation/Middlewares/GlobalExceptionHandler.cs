@@ -1,4 +1,5 @@
-﻿using Architecture.Presentation.Localization.Problem;
+﻿using Architecture.Application.Abstractions.Exceptions;
+using Architecture.Presentation.Commons.Problem;
 
 namespace Architecture.Presentation.Middlewares;
 
@@ -43,7 +44,9 @@ internal sealed class GlobalExceptionHandler
             CancellationToken cancellationToken
         )
     {
-        var problemDetails = ProblemDetailExtensions.ToValidationErrorProblemDetails(exception, httpContext);
+        using IServiceScope scope = serviceProvider.CreateScope();
+        var problemFactory = scope.ServiceProvider.GetRequiredService<ApplicationProblemDetailsFactory>();
+        var problemDetails = problemFactory.Create(exception.Errors);
 
         httpContext.Response.StatusCode = StatusCodes.Status400BadRequest;
         await httpContext.Response.WriteAsJsonAsync(problemDetails, cancellationToken);
@@ -62,13 +65,12 @@ internal sealed class GlobalExceptionHandler
 
         httpContext.Response.StatusCode = problemDetails.Status ?? StatusCodes.Status500InternalServerError;
         await httpContext.Response.WriteAsJsonAsync(problemDetails, cancellationToken);
+    }
 
-        // Local method
-        Dictionary<string, object?>? GetMoreDetailsWhenIsDevelopmentMode(Exception ex)
+    private Dictionary<string, object?>? GetMoreDetailsWhenIsDevelopmentMode(Exception ex)
+    {
+        if (environment.IsDevelopment())
         {
-            if (!environment.IsDevelopment())
-                return null;
-
             var exceptionArgs = new Dictionary<string, object?>
             {
                 ["Type"] = ex.GetType().FullName,
@@ -77,7 +79,7 @@ internal sealed class GlobalExceptionHandler
             };
 
             if (ex.InnerException is not null)
-                exceptionArgs.Add($"{nameof(ex.InnerException)}.{nameof(ex.InnerException)}", new Dictionary<string, object?>
+                exceptionArgs.Add($"{nameof(ex)}.{nameof(ex.InnerException)}", new Dictionary<string, object?>
                 {
                     ["Type"] = ex.InnerException.GetType().FullName,
                     [nameof(ex.InnerException.Message)] = ex.InnerException.Message,
@@ -86,5 +88,6 @@ internal sealed class GlobalExceptionHandler
 
             return exceptionArgs;
         }
+        return null;
     }
 }

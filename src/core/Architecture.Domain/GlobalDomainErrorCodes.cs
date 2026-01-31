@@ -1,6 +1,6 @@
 ﻿namespace Architecture.Domain;
 
-public static class GlobalErrorCodes
+internal static class GlobalDomainErrorCodes
 {
     internal static Error NotFound<TInput>(this TInput input, string code, string propName)
     {

@@ -21,7 +21,7 @@ public sealed class SubmitOrderCommandHandler : ICommandRequestHandler<SubmitOrd
     {
         var foundedOrder = await _orderRepository.GetAsync(request.Id, cancellationToken);
         if (foundedOrder is null)
-            return OrderErrorCodes.NotFound(request.Id);
+            return OrderDomainErrorCodes.NotFound(request.Id);
 
         foundedOrder.Submit();
 

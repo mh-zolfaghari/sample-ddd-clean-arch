@@ -1,4 +1,4 @@
-﻿using Architecture.Presentation.Localization.Problem;
+﻿using Architecture.Presentation.Commons.Problem;
 using Architecture.Presentation.Middlewares;
 
 namespace Architecture.Presentation.Configurations;

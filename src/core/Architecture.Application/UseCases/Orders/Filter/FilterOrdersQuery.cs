@@ -15,15 +15,5 @@ namespace Architecture.Application.UseCases.Orders.Filter
                    nameof(OrderNumber),
                    "Status"
                ];
-
-        // Validator for FilterOrdersQuery
-        public sealed class FilterOrdersQueryValidator : CollectionQueryRequestValidator<FilterOrdersQuery, OrderDTO>
-        {
-            protected override void Validations()
-            {
-                RuleFor(x => x.OrderNumber)
-                    .MaximumLength(12).WithMessage("The OrderNumber value cannot exceed 20 characters.");
-            }
-        }
     }
 }

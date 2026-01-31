@@ -13,7 +13,7 @@ public static class AppServiceConfiguration
         // Configure Wolverine with Fluent Validation and CQRS Handlers
         builder.Services.AddWolverine(opts =>
         {
-            opts.Discovery.DisableConventionalDiscovery();
+            //opts.Discovery.DisableConventionalDiscovery();
 
             // Integrating Fluent Validation
             opts.UseFluentValidation();

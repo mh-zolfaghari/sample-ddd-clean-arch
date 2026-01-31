@@ -117,7 +117,27 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Db.OperationFailed" xml:space="preserve">
+    <value>Unfortunately, an error occurred while connecting to the database.
+This is a technical issue. Please try again in a few minutes.
+If the problem persists, please contact support.</value>
+  </data>
   <data name="Operation.Failed" xml:space="preserve">
     <value>The requested operation failed. Please try again later. If the problem persists, contact support.</value>
+  </data>
+  <data name="Operation.Successful" xml:space="preserve">
+    <value>The operation was completed successfully.</value>
+  </data>
+  <data name="Pagination.PageIndexGreaterThanOrEqual" xml:space="preserve">
+    <value>The value of the PageIndex parameter must be greater than or equal to {minValue}.</value>
+  </data>
+  <data name="Pagination.PageSizeGreaterThanOrEqual" xml:space="preserve">
+    <value>The value of the PageSize parameter must be greater than or equal to {minValue}.</value>
+  </data>
+  <data name="Pagination.PageSizeLessThanOrEqual" xml:space="preserve">
+    <value>The value of the PageSize parameter must be less than or equal to {maxValue}.</value>
+  </data>
+  <data name="Validation.UnhandledErrorMessage" xml:space="preserve">
+    <value>An untranslated error has been reported.</value>
   </data>
 </root>

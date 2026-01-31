@@ -15,7 +15,7 @@ public record Error
             IDictionary<string, object?>? args = null
         )
     {
-        Code = code.ToJsonKey();
+        Code = code;
         Status = status;
         Severity = severity;
         Args = args ?? new Dictionary<string, object?>();
@@ -25,6 +25,20 @@ public record Error
     #region Props
 
     public string Code { get; private init; }
+    public string Domain
+    {
+        get
+        {
+            if (string.IsNullOrWhiteSpace(Code))
+                return "[Unknown]";
+
+            string? domain = Code.Split('.')[0];
+            if (string.IsNullOrWhiteSpace(domain))
+                return "[Unknown]";
+
+            return domain;
+        }
+    }
     public ErrorStatus Status { get; private init; }
     public ErrorSeverity Severity { get; private init; }
     public IDictionary<string, object?> Args { get; init; }
